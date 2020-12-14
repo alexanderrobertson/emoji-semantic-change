@@ -1,1 +1,1 @@
-web: gunicorn emoji-semantic-change:server
+web: gunicorn app:server
