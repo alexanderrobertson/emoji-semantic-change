@@ -17,7 +17,7 @@ data = pd.read_csv('test_data.csv')
 
 # Creates a list of dictionaries, which have the keys 'label' and 'value'.
 
-emoji_options = [{'label': i, 'value': i} for i in data.emoji.unique()]
+emoji_options = [{'label': f"{e} {n}", 'value': e} for e,n in data[['emoji', 'name']].drop_duplicates().values]
 categories_options = [{'label': i, 'value': i} for i in data.category.unique()]
 
 
@@ -50,7 +50,7 @@ dropdown1 = dcc.Dropdown(id='emoji_picker',
                         options=emoji_options,
                         multi=True,
                         value=['🍊', '🍑'],
-                        style={'backgroundColor': '#1E1E1E', 'font-size': "150%", 'height': '100px'},
+                        style={'backgroundColor': '#1E1E1E'},
                         className='emoji_picker',
                         )
 
@@ -58,7 +58,7 @@ dropdown2 = dcc.Dropdown(id='category_picker',
                         options=categories_options,
                         multi=True,
                         value=['Beverage symbols'],
-                        style={'backgroundColor': '#1E1E1E', 'font-size': "150%"},
+                        style={'backgroundColor': '#1E1E1E'},
                         className='category_picker')
 
 
