@@ -152,31 +152,31 @@ def update_graph_categories(selected_dropdown_value, data=data):
     # STEP 2
     # Draw and append traces for each emoji in the category
 
-    for cat in selected_dropdown_value:
-        df_sub = data[data.category == cat]
+    df_sub = data[data.category.isin(selected_dropdown_value)]
 
-        for emoji in df_sub.emoji.unique():
-            trace.extend([go.Scatter(x=df_sub[df_sub['emoji'] == emoji]['date'],
-                                    y=df_sub[df_sub['emoji'] == emoji]['mean'],
-                                    mode='lines',
-                                    name=emoji,
-                                    opacity=1.0,
-                                    line=dict(width=4),
-                                    textposition='bottom center'),
-                         go.Scatter(x=df_sub[df_sub['emoji'] == emoji]['date'],
-                                    y=df_sub[df_sub['emoji'] == emoji]['upper'],
-                                    mode='lines',
-                                    line=dict(width=0),
-                                    hoverinfo='none',
-                                    showlegend=False),
-                         go.Scatter(x=df_sub[df_sub['emoji'] == emoji]['date'],
-                                    y=df_sub[df_sub['emoji'] == emoji]['lower'],
-                                    mode='lines',
-                                    line=dict(width=0),
-                                    fill='tonexty',
-                                    fillcolor='rgba(68, 68, 68, 0.4)',
-                                    hoverinfo='none',
-                                    showlegend=False)]
+
+    for emoji in df_sub.emoji.unique():
+        trace.extend([go.Scatter(x=df_sub[df_sub['emoji'] == emoji]['date'],
+                                y=df_sub[df_sub['emoji'] == emoji]['mean'],
+                                mode='lines',
+                                name=emoji,
+                                opacity=1.0,
+                                line=dict(width=4),
+                                textposition='bottom center'),
+                     go.Scatter(x=df_sub[df_sub['emoji'] == emoji]['date'],
+                                y=df_sub[df_sub['emoji'] == emoji]['upper'],
+                                mode='lines',
+                                line=dict(width=0),
+                                hoverinfo='none',
+                                showlegend=False),
+                     go.Scatter(x=df_sub[df_sub['emoji'] == emoji]['date'],
+                                y=df_sub[df_sub['emoji'] == emoji]['lower'],
+                                mode='lines',
+                                line=dict(width=0),
+                                fill='tonexty',
+                                fillcolor='rgba(68, 68, 68, 0.4)',
+                                hoverinfo='none',
+                                showlegend=False)]
                          )
     # STEP 3
     traces = [trace]
