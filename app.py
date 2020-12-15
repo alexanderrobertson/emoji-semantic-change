@@ -213,8 +213,9 @@ app.layout = html.Div(children=[html.Div(className='row',
 
 
 
-server = app.server
+
 
 # Run the app
 if __name__ == '__main__':
+    server = app.server
     app.run_server(debug=False)
