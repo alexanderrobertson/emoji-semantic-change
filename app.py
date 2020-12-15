@@ -15,8 +15,6 @@ server = app.server
 
 data = pd.read_csv('test_data.csv')
 
-available_emoji = data.emoji.unique()
-
 # Creates a list of dictionaries, which have the keys 'label' and 'value'.
 def get_emoji(list_emoji):
     dict_list = []
@@ -66,7 +64,7 @@ dropdown1 = dcc.Dropdown(id='emoji_picker',
                         )
 
 dropdown2 = dcc.Dropdown(id='category_picker',
-                        options=get_emoji(data['category'].unique()),
+                        options=get_categories(data['category'].unique()),
                         multi=True,
                         value=['Beverage symbols'],
                         style={'backgroundColor': '#1E1E1E', 'font-size': "150%"},
@@ -207,13 +205,6 @@ app.layout = html.Div(children=[html.Div(className='row',
                                          )
                                 ]
                       )
-
-
-
-
-
-
-
 
 # Run the app
 if __name__ == '__main__':
