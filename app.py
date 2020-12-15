@@ -11,7 +11,7 @@ import pandas as pd
 
 # Initialise the app
 app = dash.Dash(__name__)
-
+server = app.server
 
 data = pd.read_csv('test_data.csv')
 
@@ -217,5 +217,5 @@ app.layout = html.Div(children=[html.Div(className='row',
 
 # Run the app
 if __name__ == '__main__':
-    server = app.server
+
     app.run_server(debug=False)
