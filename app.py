@@ -77,8 +77,8 @@ user_controls = html.Div(className='four columns div-user-controls',
                          children = [html.H2('Emoji: semantic neighbour change over time'),
                                      html.P('Choose one or more emoji from the dropdown below.'),
                                      dropdown1,
-                                     # html.P('Or select a group of emoji.'),
-                                     # dropdown2,
+                                     html.P('Or select a group of emoji.'),
+                                     dropdown2,
                                      ]
                          )
 
@@ -86,7 +86,7 @@ user_controls = html.Div(className='four columns div-user-controls',
 
 data_display = html.Div(className='eight columns div-for-charts bg-grey',
                         children = [html.Div(className='div-for-dropdown',
-                                             children=[graph,],
+                                             children=[graph, graph2],
                                              style={'color': '#1E1E1E'}
                                              )]
                         )
@@ -143,63 +143,63 @@ def update_graph(selected_dropdown_value, data=data):
               }
 
     return figure
-#
-# @app.callback(Output('emoji_graph2', 'figure'),
-#               [Input('category_picker', 'value')])
-# def update_graph_categories(selected_dropdown_value, data=data):
-#     ''' Draw traces of the feature 'value' based one the currently selected emoji '''
-#     # STEP 1
-#     trace = []
-#     # STEP 2
-#     # Draw and append traces for each emoji in the category
-#
-#     for cat in selected_dropdown_value:
-#         df_sub = data[data.category == cat]
-#
-#         for emoji in df_sub.emoji.unique():
-#             trace.extend([go.Scatter(x=df_sub[df_sub['emoji'] == emoji]['date'],
-#                                     y=df_sub[df_sub['emoji'] == emoji]['mean'],
-#                                     mode='lines',
-#                                     name=emoji,
-#                                     line=dict(width=4),
-#                                     textposition='bottom center'),
-#                          go.Scatter(x=df_sub[df_sub['emoji'] == emoji]['date'],
-#                                     y=df_sub[df_sub['emoji'] == emoji]['upper'],
-#                                     mode='lines',
-#                                     line=dict(width=0),
-#                                     hoverinfo='none',
-#                                     showlegend=False),
-#                          go.Scatter(x=df_sub[df_sub['emoji'] == emoji]['date'],
-#                                     y=df_sub[df_sub['emoji'] == emoji]['lower'],
-#                                     mode='lines',
-#                                     line=dict(width=0),
-#                                     fill='tonexty',
-#                                     fillcolor='rgba(68, 68, 68, 0.8)',
-#                                     hoverinfo='none',
-#                                     showlegend=False)]
-#                          )
-#     # STEP 3
-#     traces = [trace]
-#     # data = [val for sublist in traces for val in sublist]
-#     # Define Figure
-#     # STEP 4
-#     figure = {'data': [val for sublist in traces for val in sublist],
-#               'layout': go.Layout(
-#                   colorway=px.colors.qualitative.G10,
-#                   template='plotly_dark',
-#                   paper_bgcolor='rgba(0, 0, 0, 0)',
-#                   plot_bgcolor='rgba(0, 0, 0, 0)',
-#                   margin={'b': 15},
-#                   hovermode='x',
-#                   autosize=True,
-#                   title={'text': 'Emoji by category', 'font': {'color': 'white'}, 'x': 0.5},
-#                   xaxis={'range': [data['date'].min(), data['date'].max()]},
-#               ),
-#
-#               }
-#
-#     return figure
-#
+
+@app.callback(Output('emoji_graph2', 'figure'),
+              [Input('category_picker', 'value')])
+def update_graph_categories(selected_dropdown_value, data=data):
+    ''' Draw traces of the feature 'value' based one the currently selected emoji '''
+    # STEP 1
+    trace = []
+    # STEP 2
+    # Draw and append traces for each emoji in the category
+
+    for cat in selected_dropdown_value:
+        df_sub = data[data.category == cat]
+
+        for emoji in df_sub.emoji.unique():
+            trace.extend([go.Scatter(x=df_sub[df_sub['emoji'] == emoji]['date'],
+                                    y=df_sub[df_sub['emoji'] == emoji]['mean'],
+                                    mode='lines',
+                                    name=emoji,
+                                    line=dict(width=4),
+                                    textposition='bottom center'),
+                         go.Scatter(x=df_sub[df_sub['emoji'] == emoji]['date'],
+                                    y=df_sub[df_sub['emoji'] == emoji]['upper'],
+                                    mode='lines',
+                                    line=dict(width=0),
+                                    hoverinfo='none',
+                                    showlegend=False),
+                         go.Scatter(x=df_sub[df_sub['emoji'] == emoji]['date'],
+                                    y=df_sub[df_sub['emoji'] == emoji]['lower'],
+                                    mode='lines',
+                                    line=dict(width=0),
+                                    fill='tonexty',
+                                    fillcolor='rgba(68, 68, 68, 0.8)',
+                                    hoverinfo='none',
+                                    showlegend=False)]
+                         )
+    # STEP 3
+    traces = [trace]
+    # data = [val for sublist in traces for val in sublist]
+    # Define Figure
+    # STEP 4
+    figure = {'data': [val for sublist in traces for val in sublist],
+              'layout': go.Layout(
+                  colorway=px.colors.qualitative.G10,
+                  template='plotly_dark',
+                  paper_bgcolor='rgba(0, 0, 0, 0)',
+                  plot_bgcolor='rgba(0, 0, 0, 0)',
+                  margin={'b': 15},
+                  hovermode='x',
+                  autosize=True,
+                  title={'text': 'Emoji by category', 'font': {'color': 'white'}, 'x': 0.5},
+                  xaxis={'range': [data['date'].min(), data['date'].max()]},
+              ),
+
+              }
+
+    return figure
+
 
 
 app.layout = html.Div(children=[html.Div(className='row',
