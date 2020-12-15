@@ -103,6 +103,7 @@ def update_graph(selected_dropdown_value, data=data):
                                 y=df_sub[df_sub['emoji'] == emoji]['mean'],
                                 mode='lines',
                                 name=emoji,
+                                opacity=1.0,
                                 line=dict(width=4),
                                 textposition='bottom center'),
                      go.Scatter(x=df_sub[df_sub['emoji'] == emoji]['date'],
@@ -116,7 +117,7 @@ def update_graph(selected_dropdown_value, data=data):
                                 mode='lines',
                                 line=dict(width=0),
                                 fill='tonexty',
-                                fillcolor='rgba(68, 68, 68, 0.8)',
+                                fillcolor='rgba(68, 68, 68, 0.4)',
                                 hoverinfo='none',
                                 showlegend=False)]
                      )
@@ -172,7 +173,7 @@ def update_graph_categories(selected_dropdown_value, data=data):
                                     mode='lines',
                                     line=dict(width=0),
                                     fill='tonexty',
-                                    fillcolor='rgba(68, 68, 68, 0.8)',
+                                    fillcolor='rgba(68, 68, 68, 0.4)',
                                     hoverinfo='none',
                                     showlegend=False)]
                          )
