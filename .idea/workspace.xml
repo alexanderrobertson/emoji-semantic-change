@@ -19,7 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6117f9c8-3978-43b5-9d2f-06a7666b6d62" name="Default Changelist" comment="change opacity">
+    <list default="true" id="6117f9c8-3978-43b5-9d2f-06a7666b6d62" name="Default Changelist" comment="change grouping on df">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
     </list>
@@ -98,7 +98,7 @@
       <option name="presentableId" value="Default" />
       <updated>1607984593202</updated>
       <workItem from="1607984594540" duration="8907000" />
-      <workItem from="1608026222080" duration="2443000" />
+      <workItem from="1608026222080" duration="3682000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <created>1607984665215</created>
@@ -205,7 +205,14 @@
       <option name="project" value="LOCAL" />
       <updated>1608027277552</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="change grouping on df">
+      <created>1608028729867</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1608028729867</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -232,7 +239,8 @@
     <MESSAGE value="move server to top?" />
     <MESSAGE value="let's seeeeee" />
     <MESSAGE value="change opacity" />
-    <option name="LAST_COMMIT_MESSAGE" value="change opacity" />
+    <MESSAGE value="change grouping on df" />
+    <option name="LAST_COMMIT_MESSAGE" value="change grouping on df" />
   </component>
   <component name="WindowStateProjectService">
     <state x="284" y="313" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1607984736306">
@@ -243,37 +251,37 @@
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
     <state x="610" y="413" key="FileChooserDialogImpl/0.0.3440.1400/3440.0.1440.2520@0.0.3440.1400" timestamp="1607984704843" />
-    <state width="781" height="350" key="GridCell.Tab.0.bottom" timestamp="1608028677276">
+    <state width="781" height="350" key="GridCell.Tab.0.bottom" timestamp="1608029903769">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
     <state width="781" height="350" key="GridCell.Tab.0.bottom/0.0.3440.1400/3440.0.1440.2520@0.0.3440.1400" timestamp="1607993472337" />
-    <state width="781" height="350" key="GridCell.Tab.0.bottom/0.0.3440.1400@0.0.3440.1400" timestamp="1608028677276" />
-    <state width="781" height="350" key="GridCell.Tab.0.center" timestamp="1608028677276">
+    <state width="781" height="350" key="GridCell.Tab.0.bottom/0.0.3440.1400@0.0.3440.1400" timestamp="1608029903769" />
+    <state width="781" height="350" key="GridCell.Tab.0.center" timestamp="1608029903769">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
     <state width="781" height="350" key="GridCell.Tab.0.center/0.0.3440.1400/3440.0.1440.2520@0.0.3440.1400" timestamp="1607993472337" />
-    <state width="781" height="350" key="GridCell.Tab.0.center/0.0.3440.1400@0.0.3440.1400" timestamp="1608028677276" />
-    <state width="781" height="350" key="GridCell.Tab.0.left" timestamp="1608028677276">
+    <state width="781" height="350" key="GridCell.Tab.0.center/0.0.3440.1400@0.0.3440.1400" timestamp="1608029903769" />
+    <state width="781" height="350" key="GridCell.Tab.0.left" timestamp="1608029903769">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
     <state width="781" height="350" key="GridCell.Tab.0.left/0.0.3440.1400/3440.0.1440.2520@0.0.3440.1400" timestamp="1607993472337" />
-    <state width="781" height="350" key="GridCell.Tab.0.left/0.0.3440.1400@0.0.3440.1400" timestamp="1608028677276" />
-    <state width="781" height="350" key="GridCell.Tab.0.right" timestamp="1608028677276">
+    <state width="781" height="350" key="GridCell.Tab.0.left/0.0.3440.1400@0.0.3440.1400" timestamp="1608029903769" />
+    <state width="781" height="350" key="GridCell.Tab.0.right" timestamp="1608029903769">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
     <state width="781" height="350" key="GridCell.Tab.0.right/0.0.3440.1400/3440.0.1440.2520@0.0.3440.1400" timestamp="1607993472337" />
-    <state width="781" height="350" key="GridCell.Tab.0.right/0.0.3440.1400@0.0.3440.1400" timestamp="1608028677276" />
-    <state x="422" y="378" key="Vcs.Push.Dialog.v2" timestamp="1608027287592">
+    <state width="781" height="350" key="GridCell.Tab.0.right/0.0.3440.1400@0.0.3440.1400" timestamp="1608029903769" />
+    <state x="422" y="378" key="Vcs.Push.Dialog.v2" timestamp="1608028742121">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
     <state x="422" y="378" key="Vcs.Push.Dialog.v2/0.0.3440.1400/3440.0.1440.2520@0.0.3440.1400" timestamp="1607993047753" />
-    <state x="422" y="378" key="Vcs.Push.Dialog.v2/0.0.3440.1400@0.0.3440.1400" timestamp="1608027287592" />
+    <state x="422" y="378" key="Vcs.Push.Dialog.v2/0.0.3440.1400@0.0.3440.1400" timestamp="1608028742121" />
     <state x="647" y="572" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1607984636606">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
     <state x="647" y="572" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.3440.1400/3440.0.1440.2520@0.0.3440.1400" timestamp="1607984636606" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/turing_dash_app$app.coverage" NAME="app Coverage Results" MODIFIED="1608028677268" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/turing_dash_app$app.coverage" NAME="app Coverage Results" MODIFIED="1608029903761" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

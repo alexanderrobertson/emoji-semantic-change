@@ -16,24 +16,15 @@ server = app.server
 data = pd.read_csv('test_data.csv')
 
 # Creates a list of dictionaries, which have the keys 'label' and 'value'.
-def get_emoji(list_emoji):
-    dict_list = []
-    for i in list_emoji:
-        dict_list.append({'label': i, 'value': i})
-    return dict_list
 
-def get_categories(categories):
-    dict_list = []
-    for i in categories:
-        dict_list.append({'label': i, 'value': i})
-    return dict_list
-
+emoji_options = [{'label': i, 'value': i} for i in data.emoji.unique()]
+categories_options = [{'label': i, 'value': i} for i in data.category.unique()]
 
 
 graph = dcc.Graph(id='emoji_graph',
           config={'displayModeBar': False},
           animate=True,
-          figure=px.line(data,
+          figure=px.line(data.head(),
                          x='date',
                          y='mean',
                          color='emoji',
@@ -45,7 +36,7 @@ graph = dcc.Graph(id='emoji_graph',
 graph2 = dcc.Graph(id='emoji_graph2',
           config={'displayModeBar': False},
           animate=True,
-          figure=px.line(data,
+          figure=px.line(data.head(),
                          x='date',
                          y='mean',
                          color='emoji',
@@ -56,7 +47,7 @@ graph2 = dcc.Graph(id='emoji_graph2',
 
 
 dropdown1 = dcc.Dropdown(id='emoji_picker',
-                        options=get_emoji(data['emoji'].unique()),
+                        options=emoji_options,
                         multi=True,
                         value=['🍊', '🍑'],
                         style={'backgroundColor': '#1E1E1E', 'font-size': "150%", 'height': '100px'},
@@ -64,7 +55,7 @@ dropdown1 = dcc.Dropdown(id='emoji_picker',
                         )
 
 dropdown2 = dcc.Dropdown(id='category_picker',
-                        options=get_categories(data['category'].unique()),
+                        options=categories_options,
                         multi=True,
                         value=['Beverage symbols'],
                         style={'backgroundColor': '#1E1E1E', 'font-size': "150%"},
@@ -99,25 +90,25 @@ def update_graph(selected_dropdown_value, data=data):
     # STEP 2
     # Draw and append traces for each emojiemoji
     for emoji in selected_dropdown_value:
-        trace.extend([go.Scatter(x=df_sub[df_sub['emoji'] == emoji]['date'],
+        x_data = df_sub[df_sub['emoji'] == emoji]['date']
+        trace.extend([go.Scatter(x=x_data,
                                 y=df_sub[df_sub['emoji'] == emoji]['mean'],
                                 mode='lines',
                                 name=emoji,
                                 opacity=1.0,
                                 line=dict(width=4),
                                 textposition='bottom center'),
-                     go.Scatter(x=df_sub[df_sub['emoji'] == emoji]['date'],
+                     go.Scatter(x=x_data,
                                 y=df_sub[df_sub['emoji'] == emoji]['upper'],
                                 mode='lines',
                                 line=dict(width=0),
                                 hoverinfo='none',
                                 showlegend=False),
-                     go.Scatter(x=df_sub[df_sub['emoji'] == emoji]['date'],
+                     go.Scatter(x=x_data,
                                 y=df_sub[df_sub['emoji'] == emoji]['lower'],
                                 mode='lines',
                                 line=dict(width=0),
                                 fill='tonexty',
-                                fillcolor='rgba(68, 68, 68, 0.4)',
                                 hoverinfo='none',
                                 showlegend=False)]
                      )
@@ -174,7 +165,6 @@ def update_graph_categories(selected_dropdown_value, data=data):
                                 mode='lines',
                                 line=dict(width=0),
                                 fill='tonexty',
-                                fillcolor='rgba(68, 68, 68, 0.4)',
                                 hoverinfo='none',
                                 showlegend=False)]
                          )
