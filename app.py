@@ -68,7 +68,7 @@ dropdown1 = dcc.Dropdown(id='emoji_picker',
 dropdown2 = dcc.Dropdown(id='category_picker',
                         options=get_emoji(data['category'].unique()),
                         multi=True,
-                        value=['Food symbol'],
+                        value=['Beverage symbols'],
                         style={'backgroundColor': '#1E1E1E', 'font-size': "150%"},
                         className='category_picker')
 
