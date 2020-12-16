@@ -63,7 +63,9 @@ dropdown2 = dcc.Dropdown(id='category_picker',
 
 
 user_controls = html.Div(className='four columns div-user-controls',
-                         children = [html.H2('Emoji: semantic neighbour change over time'),
+                         children = [html.H2('Emoji: semantic change over time'),
+                                     html.H3('Something'),
+                                     html.Br(),
                                      html.P('Choose one or more emoji from the dropdown below.'),
                                      dropdown1,
                                      html.P('Or select a group of emoji.'),
