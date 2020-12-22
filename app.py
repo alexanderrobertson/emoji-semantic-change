@@ -1,11 +1,12 @@
 import dash
-from dash.dependencies import Input, Output
+from dash.dependencies import Input, Output, State
 import dash_core_components as dcc
 import dash_html_components as html
 
 import plotly.express as px
 import plotly.graph_objects as go
 
+from itertools import cycle
 
 import pandas as pd
 
@@ -18,8 +19,11 @@ change_data = pd.read_csv('change.csv')
 
 # Creates a list of dictionaries, which have the keys 'label' and 'value'.
 
-emoji_options = [{'label': f"{e} {n}", 'value': e} for e,n in data[['emoji', 'name']].drop_duplicates().values]
+g1_colors = cycle(list(px.colors.qualitative.G10))
+g2_colors = cycle(list(px.colors.qualitative.G10))
 
+
+emoji_options = [{'label': f"{e} {n}", 'value': e} for e,n in data[['emoji', 'name']].drop_duplicates().values]
 
 graph = dcc.Graph(id='emoji_graph',
           config={'displayModeBar': False},
@@ -81,7 +85,6 @@ def update_graph(selected_dropdown_value, data=data):
     df_sub = data
     # STEP 2
     # Draw and append traces for each emojiemoji
-
     for emoji in selected_dropdown_value:
         x_data = df_sub[df_sub['emoji'] == emoji]['date']
         trace.extend([go.Scatter(x=x_data,
@@ -103,7 +106,7 @@ def update_graph(selected_dropdown_value, data=data):
                                 line=dict(width=0),
                                 fill='tonexty',
                                 hoverinfo='none',
-                                marker=dict(color=px.colors.qualitative.G10),
+                                fillcolor='rgba(68, 68, 68, 0.3)',
                                 showlegend=False)]
                      )
     # STEP 3
@@ -113,7 +116,7 @@ def update_graph(selected_dropdown_value, data=data):
     # STEP 4
     figure = {'data': [val for sublist in traces for val in sublist],
               'layout': go.Layout(
-                  colorway=px.colors.qualitative.G10,
+                  # colorway=px.colors.qualitative.G10,
                   template='plotly_dark',
                   paper_bgcolor='rgba(0, 0, 0, 0)',
                   plot_bgcolor='rgba(0, 0, 0, 0)',
@@ -129,7 +132,8 @@ def update_graph(selected_dropdown_value, data=data):
     return figure
 
 @app.callback(Output('emoji_graph2', 'figure'),
-              [Input('emoji_picker', 'value')])
+              [Input('emoji_picker', 'value')],
+              )
 def update_graph_categories(selected_dropdown_value, data=change_data):
     ''' Draw traces of the feature 'value' based one the currently selected emoji '''
     # STEP 1
@@ -137,6 +141,7 @@ def update_graph_categories(selected_dropdown_value, data=change_data):
     df_sub = data
     # STEP 2
     # Draw and append traces for each emoji
+
 
     for emoji in selected_dropdown_value:
         x_data = df_sub[df_sub['emoji'] == emoji]['date']
@@ -157,7 +162,7 @@ def update_graph_categories(selected_dropdown_value, data=change_data):
 
     figure = {'data': [val for sublist in traces for val in sublist],
               'layout': go.Layout(
-                  colorway=px.colors.qualitative.G10,
+                  # colorway=px.colors.qualitative.G10,
                   template='plotly_dark',
                   paper_bgcolor='rgba(0, 0, 0, 0)',
                   plot_bgcolor='rgba(0, 0, 0, 0)',
@@ -182,4 +187,4 @@ app.layout = html.Div(children=[html.Div(className='row',
 
 # Run the app
 if __name__ == '__main__':
-    app.run_server(debug=True)
+    app.run_server(debug=False)
