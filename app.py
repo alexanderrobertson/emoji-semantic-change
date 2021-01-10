@@ -216,7 +216,6 @@ table_year = dash_table.DataTable(id='table_year',
               Input('emoji_picker', 'value'),
               )
 def update_table(selected_dropdown_value):
-    print(selected_dropdown_value)
     year = pd.DataFrame(year_list[year_list.emoji.isin(selected_dropdown_value)])
     month = pd.DataFrame(month_list[month_list.emoji.isin(selected_dropdown_value)])
 
@@ -252,7 +251,7 @@ def update_graph(selected_dropdown_value, data=change_data):
                   template='plotly_dark',
                   paper_bgcolor='rgba(0, 0, 0, 0)',
                   plot_bgcolor='rgba(0, 0, 0, 0)',
-                  margin={'b': 15},
+                  margin={'t': 0, 'b':0, 'l':0, 'r':0},
                   hovermode='x',
                   autosize=True,
                   xaxis={'range': [data['date'].min(), data['date'].max()]},
@@ -284,10 +283,17 @@ controls = dbc.Card(
             className="card-text",
         ),
         html.P(
-            "The most similar words are shown in the tables below the graph, by month and by year.",
+            "The most similar words (collapsed by lemma) are shown, by decreased order of similarity, in the tables below the graph, by month and by year.",
             className="card-text",
         ),
         dropdown1,
+    ],
+    body=True,
+)
+
+graph_card = dbc.Card(
+    [
+        graph,
     ],
     body=True,
 )
@@ -299,9 +305,9 @@ app.layout = dbc.Container(
         dbc.Row(
             [
                 dbc.Col(controls, md=4),
-                dbc.Col(graph, md=8),
+                dbc.Col(graph_card, md=8),
             ],
-            align="center",
+
         ),
         html.Hr(),
         dbc.Row(
@@ -313,7 +319,7 @@ app.layout = dbc.Container(
 
         ),
     ],
-    fluid=True,
+    fluid=True, style={'margin-top':"10px"},
 )
 
 if __name__ == '__main__':
