@@ -266,13 +266,27 @@ def update_graph(selected_dropdown_value, data=change_data):
 dropdown1 = dcc.Dropdown(id='emoji_picker',
                          options=emoji_options,
                          multi=True,
-                         value=['🍊', '🍑'],
+                         value=['🐸', '💀', '🏀', '🎃', '🍁'],
                          style={'backgroundColor': '#1E1E1E', },
                          className='emoji_picker',
                          )
 
 controls = dbc.Card(
     [
+        html.H4("Emoji Semantic Change Over Time", className="card-title"),
+        html.B(
+            "CAUTION: This data was generated using Twitter data. It contains offensive language.",
+            className="card-text",
+        ),
+        html.Br(),
+        html.P(
+            "Select emoji to view how their semantics have changed over time, relative to when they were first available.",
+            className="card-text",
+        ),
+        html.P(
+            "The most similar words are shown in the tables below the graph, by month and by year.",
+            className="card-text",
+        ),
         dropdown1,
     ],
     body=True,
@@ -280,8 +294,8 @@ controls = dbc.Card(
 
 app.layout = dbc.Container(
     [
-        html.H1("Emoji Semantic Change Over Time"),
-        html.Hr(),
+        # html.H1("Emoji Semantic Change Over Time"),
+        # html.Hr(),
         dbc.Row(
             [
                 dbc.Col(controls, md=4),
