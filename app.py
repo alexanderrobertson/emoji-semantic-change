@@ -13,6 +13,8 @@ import pandas as pd
 
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.CYBORG])
 server = app.server
+app.title = 'ESCOT'
+
 
 change_data = pd.read_csv('change.csv')
 month_list = pd.read_csv('month_list.csv')
