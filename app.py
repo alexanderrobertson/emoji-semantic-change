@@ -11,9 +11,11 @@ import plotly.graph_objects as go
 
 import pandas as pd
 
-app = dash.Dash(__name__, external_stylesheets=[dbc.themes.CYBORG])
+app = dash.Dash(__name__,
+                title='ESCOT',
+                external_stylesheets=[dbc.themes.CYBORG],
+                external_scripts=['https://www.googletagmanager.com/gtag/js?id=G-DXWSX353B6',],)
 server = app.server
-app.title = 'ESCOT'
 
 
 change_data = pd.read_csv('change.csv')
