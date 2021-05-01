@@ -6,3 +6,5 @@
 /.idea/turing_dash_app.iml
 /.idea/vcs.xml
 /.idea/workspace.xml
+.idea
+.DS_Store
