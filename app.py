@@ -26,7 +26,7 @@ emoji_options = [{'label': f"{e} {n}", 'value': e} for e, n in change_data[['emo
 
 graph = dcc.Graph(id='emoji_graph',
                   config={'displayModeBar': False},
-                  animate=True,
+                  animate=True, style={'height':'600px'},
                   )
 t_colors = px.colors.qualitative.G10
 
@@ -34,9 +34,8 @@ table_month = dash_table.DataTable(id='table_month',
                                    columns=[{"name": '', "id": 'emoji'}, {"name": 'Month', "id": 'month'},
                                             {"name": 'Most similar words', "id": 'top15'}],
                                    data=[],
-                                   export_format="csv",
                                    style_as_list_view=True,
-                                   style_cell=dict(textAlign='left', whiteSpace='normal', height='auto'),
+                                   style_cell=dict(textAlign='left', whiteSpace='normal', height='auto', padding=10),
                                    style_header=dict(backgroundColor="black"),
                                    style_data=dict(backgroundColor="black"),
                                    style_data_conditional=[
@@ -126,9 +125,8 @@ table_year = dash_table.DataTable(id='table_year',
                                   columns=[{"name": '', "id": 'emoji'}, {"name": 'Year', "id": 'year'},
                                            {"name": 'Most similar words', "id": 'top15'}],
                                   data=[],
-                                  export_format="csv",
                                   style_as_list_view=True,
-                                  style_cell=dict(textAlign='left', whiteSpace='normal', height='auto'),
+                                  style_cell=dict(textAlign='left', whiteSpace='normal', height='auto', padding=10),
                                   style_header=dict(backgroundColor="black"),
                                   style_data=dict(backgroundColor="black"),
                                   style_data_conditional=[
@@ -282,19 +280,31 @@ controls = dbc.Card(
             className="card-text",
         ),
         html.Br(),
-        html.P("Code and raw data can be downloaded <a href='https://github.com/alexanderrobertson/emoji-semantic-change'>from Github</a>"),
+        html.P(["Code and raw data can be downloaded ", html.A('from Github.', href="https://github.com/alexanderrobertson/emoji-semantic-change")]),
         html.P(
-            "Select emoji to view how their semantics have changed over time, relative to when they were first available.",
-            className="card-text",
-        ),
-        html.P(
-            "The most similar words (collapsed by lemma) are shown, by decreased order of similarity, in the tables below the graph, by month and by year.",
+            "Select an emoji from the drop-down, or start typing its name, to view how its semantics have changed over time.",
             className="card-text",
         ),
         dropdown1,
+        html.Br(),
+        html.P(
+            "Chart shows semantic change over time, relative to first appearance in our dataset. Higher score = more semantic change. The most similar words each month/year are shown below the graph, by decreasing order of similarity.",
+            className="card-text",
+        ),
+
+        html.Table(['Examples:', html.Tr([html.Th('Emoji'), html.Th('Pattern')]),
+                    html.Tr([html.Td('🐸'), html.Td('Large sudden change in 2014')]),
+                    html.Tr([html.Td('💀'), html.Td('Gradual change over time')]),
+                    html.Tr([html.Td('🏀'), html.Td('Slight seasonality, linked to sports season')]),
+                    html.Tr([html.Td('🎃'), html.Td('High seasonality, linked to holidays')]),
+                    html.Tr([html.Td('🍁'), html.Td('Switches between two meanings throughout the year')])]),
+
+
+       
     ],
-    body=True,
+    body=True, 
 )
+
 
 graph_card = dbc.Card(
     [
@@ -305,13 +315,13 @@ graph_card = dbc.Card(
 
 app.layout = dbc.Container(
     [
-        # html.H1("Emoji Semantic Change Over Time"),
-        # html.Hr(),
+
         dbc.Row(
             [
-                dbc.Col(controls, md=4),
-                dbc.Col(graph_card, md=8),
-            ],
+                dbc.CardGroup([dbc.Col(controls, md=4),
+                               dbc.Col(graph_card, md=8)],
+                              ),
+            ], 
 
         ),
         html.Hr(),
@@ -320,11 +330,11 @@ app.layout = dbc.Container(
              dbc.Col(table_month, md=4),
              dbc.Col(table_year, md=4),
 
-             ],
+             ],style={'margin-left':'10px',},
 
         ),
     ],
-    fluid=True, style={'margin-top':"10px"},
+    fluid=True, style={'margin-top':"10px"}, 
 )
 
 if __name__ == '__main__':
