@@ -1,8 +1,10 @@
-# Emoji semantic
+# Emoji semantic change over time
+
+Simple dashboard made in Dash.
 
 Code and data for https://emoji-semantic-change.herokuapp.com/
 
-Simple dashboard made in Dash.
+Paper available at https://arxiv.org/abs/2105.00846
 
 ## `change.csv`
 
@@ -26,6 +28,6 @@ Monthly data is calculated using aggregate data across all years. So the top 15 
 
 This data is generated from Twitter content, so be prepared for terms you might find offensive!
 
-##`nn_sim.csv`
+## `nn_sim.csv`
 
 For each emoji, in a given month, shows the mean cosine similarity to that emoji's 25 nearest neighbours, along with upper/lower bounds on 95% confidence intervals. (This data is not used by the dashboard and didn't make it into the paper!)

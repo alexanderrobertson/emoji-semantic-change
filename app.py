@@ -280,7 +280,8 @@ controls = dbc.Card(
             className="card-text",
         ),
         html.Br(),
-        html.P(["Code and raw data can be downloaded ", html.A('from Github.', href="https://github.com/alexanderrobertson/emoji-semantic-change")]),
+        html.P(["Code and data ", html.A('on Github. ', href="https://github.com/alexanderrobertson/emoji-semantic-change"),
+                "Paper ", html.A("on arXiv. ", href="https://arxiv.org/abs/2105.00846"),]),
         html.P(
             "Select an emoji from the drop-down, or start typing its name, to view how its semantics have changed over time.",
             className="card-text",
