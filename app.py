@@ -1,3 +1,4 @@
+import os
 import dash
 from dash.dependencies import Input, Output
 import dash_core_components as dcc
@@ -339,4 +340,7 @@ app.layout = dbc.Container(
 )
 
 if __name__ == '__main__':
-    app.run_server(debug=True)
+    app.run(debug=False,
+            host="0.0.0.0",
+            port=int(os.environ.get("PORT", 8080))
+)
