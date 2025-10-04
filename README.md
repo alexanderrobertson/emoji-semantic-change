@@ -31,3 +31,4 @@ This data is generated from Twitter content, so be prepared for terms you might 
 ## `nn_sim.csv`
 
 For each emoji, in a given month, shows the mean cosine similarity to that emoji's 25 nearest neighbours, along with upper/lower bounds on 95% confidence intervals. (This data is not used by the dashboard and didn't make it into the paper!)
+
