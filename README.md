@@ -2,7 +2,7 @@
 
 Simple dashboard made in Dash.
 
-Code and data for https://emoji-semantic-change.herokuapp.com/
+Code and data for https://semantic-change.emoji-research.com/
 
 Paper available at https://arxiv.org/abs/2105.00846
 
