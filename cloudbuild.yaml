@@ -5,8 +5,6 @@ steps:
     args:
       - '-c'
       - |
-        # Check if the repository exists. If not, the 'describe' command will fail.
-        # The '||' operator then executes the 'create' command.
         gcloud artifacts repositories describe emoji-semantic-change --location=us-central1 --project=$PROJECT_ID || \
         gcloud artifacts repositories create emoji-semantic-change \
           --repository-format=docker \
@@ -18,33 +16,33 @@ steps:
     args:
       - 'build'
       - '-t'
-      - 'us-central1-docker.pkg.dev/$PROJECT_ID/emoji-semantic-change:$COMMIT_SHA'
+      - 'us-central1-docker.pkg.dev/$PROJECT_ID/emoji-semantic-change/emoji-semantic-change:$COMMIT_SHA' # <-- CORRECTED
       - '.'
 
   # 3. Push the image to Google Artifact Registry
   - name: 'gcr.io/cloud-builders/docker'
     args:
       - 'push'
-      - 'us-central1-docker.pkg.dev/$PROJECT_ID/emoji-semantic-change:$COMMIT_SHA'
+      - 'us-central1-docker.pkg.dev/$PROJECT_ID/emoji-semantic-change/emoji-semantic-change:$COMMIT_SHA' # <-- CORRECTED
 
-  # 3. Deploy the image to Google Cloud Run
+  # 4. Deploy the image to Google Cloud Run (renumbered step for clarity)
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: 'gcloud'
     args:
       - 'run'
       - 'deploy'
-      - 'emoji-semantic-change' # <-- This is your Cloud Run service name
+      - 'emoji-semantic-change'
       - '--image'
-      - 'us-central1-docker.pkg.dev/$PROJECT_ID/emoji-semantic-change:$COMMIT_SHA'
+      - 'us-central1-docker.pkg.dev/$PROJECT_ID/emoji-semantic-change/emoji-semantic-change:$COMMIT_SHA' # <-- CORRECTED
       - '--region'
       - 'us-central1'
       - '--platform'
       - 'managed'
-      - '--allow-unauthenticated' # Add this if your service is public
+      - '--allow-unauthenticated'
 
 # This tells Cloud Build where the final image is, for its records.
 images:
-  - 'us-central1-docker.pkg.dev/$PROJECT_ID/emoji-semantic-change:$COMMIT_SHA'
+  - 'us-central1-docker.pkg.dev/$PROJECT_ID/emoji-semantic-change/emoji-semantic-change:$COMMIT_SHA' # <-- CORRECTED
 
 options:
   logging: CLOUD_LOGGING_ONLY
