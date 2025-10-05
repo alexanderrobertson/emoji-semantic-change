@@ -7,12 +7,12 @@ steps:
       - |
         # Check if the repository exists. If not, the 'describe' command will fail.
         # The '||' operator then executes the 'create' command.
-        gcloud artifacts repositories describe emoji-semantic-change --location=us-central1 --project=$$PROJECT_ID || \
+        gcloud artifacts repositories describe emoji-semantic-change --location=us-central1 --project=$PROJECT_ID || \
         gcloud artifacts repositories create emoji-semantic-change \
           --repository-format=docker \
           --location=us-central1 \
           --description="Docker repository for emoji-semantic-change app" \
-          --project=$$PROJECT_ID
+          --project=$PROJECT_ID
   # 2. Build the container image
   - name: 'gcr.io/cloud-builders/docker'
     args:
