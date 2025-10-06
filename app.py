@@ -219,7 +219,8 @@ table_year = dash_table.DataTable(id='table_year',
               Input('emoji_picker', 'value'),
               )
 def update_table(selected_dropdown_value):
-    print(f"Selected emojis:\t{','.join(selected_dropdown_value)}")
+    for emoji in selected_dropdown_value:
+        print(f"Selected emoji:\t{emoji}")
     year = pd.DataFrame(year_list[year_list.emoji.isin(selected_dropdown_value)])
     month = pd.DataFrame(month_list[month_list.emoji.isin(selected_dropdown_value)])
 
